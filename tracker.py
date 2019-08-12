@@ -34,12 +34,15 @@ avg_x_window = [0.5] * MOVING_AVG_N
 avg_y_window = [0.5] * MOVING_AVG_N
 
 print('capture starting in')
+time.sleep(1.0)
 print('3...')
 time.sleep(1.0)
 print('2...')
 time.sleep(1.0)
 print('1...')
 time.sleep(1.0)
+print('')
+print('capturing...')
 
 start_time = time.time()
 
@@ -114,7 +117,6 @@ for i in range(0, NUM_FRAMES):
     
 # calculate fps
 duration = time.time() - start_time
-print('fps: {:d}'.format(int(NUM_FRAMES/duration)))
 
 # print tracking point coordinates
 for coords in results:
@@ -124,6 +126,10 @@ for coords in results:
 for i, frame in enumerate(results_frames):
     cv2.imwrite('frames/frame_{:04d}.ppm'.format(i), frame)
     
+# print fps
+print('--------')
+print('fps: {:.2f}'.format(NUM_FRAMES/duration))
+print('--------')
 
 # release camera
 cap.release()
